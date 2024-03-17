@@ -1,0 +1,39 @@
+version: '3'
+
+networks:
+  myNetwork:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.1.0/24
+
+services:
+
+  ubuntu:  
+    image: ubuntu:latest
+    container_name: ubuntu
+    networks:
+      myNetwork:
+        ipv4_address: 192.168.1.2
+
+  kali_linux:
+    image: kalilinux/kali-rolling
+    container_name: kali_linux
+    networks:
+      myNetwork:
+        ipv4_address: 192.168.1.3
+
+  rocky_linux:
+    image: rockylinux:9.3.20231119-minimal
+    container_name: rocky_linux
+    networks:
+      myNetwork:
+        ipv4_address: 192.168.1.4
+
+#cent_os:
+#  image: centos:latest
+#  container_name: cent_os
+#  networks:
+#    myNetwork:
+#      ipv4_address: 192.168.1.5
